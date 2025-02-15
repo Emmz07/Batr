@@ -28,7 +28,7 @@ export default function Footer() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
             <Link href="/" className="font-bold text-xl">
-              SwapSpot
+              Batr
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
               The trusted platform for bartering goods and services worldwide.

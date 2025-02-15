@@ -1,72 +1,140 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import { Search, Menu, Bell, MessageSquare } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
+import { useState } from 'react';
+import Link from 'next/link';
+import { 
+  Search, 
+  Repeat, 
+  Bell, 
+  MessageSquare, 
+  Menu,
+  X,
+  UserCircle2
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
 
 export default function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container mx-auto flex h-16 items-center gap-4 px-4">
-        <Link href="/" className="meme flex items-center font-bold text-2xl md:text-3xl lg:text-4xl tracking-tight leading-[1.1]">
-          BA<span className="text-indigo-500">TR</span>
-        </Link>
-        
-        <div className="flex-1 flex items-center gap-4 md:gap-8">
-          <form className="hidden md:flex-1 md:flex max-w-md">
-            <div className="relative w-full">
-              <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                placeholder="Search items to trade..."
-                className="pl-8"
-              />
-            </div>
-          </form>
-          
-          <nav className="flex items-center gap-4">
-            <Link href="/browse" className="hidden md:block">
-              Browse
+    <nav className="bg-background border-b">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          {/* Logo and primary navigation */}
+          <div className="flex items-center">
+            <Link href="/" className="flex items-center">
+              <Repeat className="h-8 w-8 text-primary" />
+              <span className="ml-2 text-xl font-bold text-primary">Batr</span>
             </Link>
+            
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center ml-10 space-x-8">
+              <Link href="/trades" className="text-foreground/80 hover:text-primary transition-colors">
+                Browse Trades
+              </Link>
+              <Link href="/categories" className="text-foreground/80 hover:text-primary transition-colors">
+                Categories
+              </Link>
+              <Link href="/how-it-works" className="text-foreground/80 hover:text-primary transition-colors">
+                How It Works
+              </Link>
+            </div>
+          </div>
+
+          {/* Search Bar - Desktop */}
+          <div className="hidden md:flex items-center flex-1 max-w-lg mx-8">
+            <div className="relative w-full">
+              <Input
+                type="text"
+                placeholder="Search items to trade..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-4 pr-10"
+              />
+              <Search className="absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+            </div>
+          </div>
+
+          {/* Right side navigation items */}
+          <div className="hidden md:flex items-center space-x-4">
             <Button variant="ghost" size="icon" className="relative">
               <Bell className="h-5 w-5" />
-              <span className="absolute -top-1 -right-1 h-4 w-4 rounded-full bg-primary text-[10px] font-medium text-primary-foreground flex items-center justify-center">
-                3
-              </span>
+              <span className="absolute top-0 right-0 h-2 w-2 bg-destructive rounded-full"></span>
             </Button>
             <Button variant="ghost" size="icon">
               <MessageSquare className="h-5 w-5" />
             </Button>
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem>
-                  <Link href="/dashboard">Dashboard</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/profile">Profile</Link>
-                </DropdownMenuItem>
-                <DropdownMenuItem>
-                  <Link href="/settings">Settings</Link>
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
-            <Button asChild>
-              <Link href="/post">Post Item</Link>
+            <Button variant="default">
+              Start Trading
             </Button>
-          </nav>
+            <Button variant="ghost" size="icon">
+              <UserCircle2 className="h-6 w-6" />
+            </Button>
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="flex items-center md:hidden">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </Button>
+          </div>
         </div>
       </div>
-    </header>
+
+      {/* Mobile menu */}
+      {isMenuOpen && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            {/* Search - Mobile */}
+            <div className="p-2">
+              <Input
+                type="text"
+                placeholder="Search items to trade..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full"
+              />
+            </div>
+            
+            <Link
+              href="/trades"
+              className="block px-3 py-2 text-base font-medium text-foreground/80 hover:text-primary"
+            >
+              Browse Trades
+            </Link>
+            <Link
+              href="/categories"
+              className="block px-3 py-2 text-base font-medium text-foreground/80 hover:text-primary"
+            >
+              Categories
+            </Link>
+            <Link
+              href="/how-it-works"
+              className="block px-3 py-2 text-base font-medium text-foreground/80 hover:text-primary"
+            >
+              How It Works
+            </Link>
+            
+            <div className="pt-4 pb-3 border-t border-border">
+              <div className="flex items-center px-3">
+                <Button variant="default" className="w-full">
+                  Start Trading
+                </Button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </nav>
   );
 }

@@ -34,7 +34,7 @@ export default function Hero() {
           </h1>
           
           <p className="text-lg md:text-xl mb-8 max-w-[480px]">
-            Transform your unused items into valuable treasures. Join the future of sustainable trading on SwapSpot.
+            Transform your unused items into valuable treasures. Join the future of sustainable trading on Batr.
           </p>
           
           <div className="flex flex-col sm:flex-row gap-4">

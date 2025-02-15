@@ -55,8 +55,8 @@ export default function FeaturedDeals() {
   return (
     <section className="container py-16 md:py-24">
       <div className="flex flex-col md:flex-row justify-between items-center gap-4 mb-12">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+        <div className="ml-7">
+          <h2 className="text-3xl  md:text-4xl font-bold tracking-tight mb-2">
             Featured Deals
           </h2>
           <p className="text-muted-foreground">
@@ -65,7 +65,7 @@ export default function FeaturedDeals() {
         </div>
         <Link
           href="/browse"
-          className="text-primary hover:text-primary/80 transition-colors font-medium"
+          className="text-primary mr-7 hover:text-primary/80 transition-colors font-medium"
         >
           View all deals →
         </Link>

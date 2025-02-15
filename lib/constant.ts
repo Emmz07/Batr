@@ -16,9 +16,15 @@ export const ANIMATION_CONFIG = {
 } as const;
 
 export const ANIME_TITLES: AnimeTitle[] = [
-  { id: "demonSlayer", displayName: "demon slayer" },
-  { id: "silentVoice", displayName: "a silent voice" },
-  { id: "attackOnTitan", displayName: "attack on titan" },
-  { id: "spiritedAway", displayName: "spirited away" },
-  { id: "bunnyGirl", displayName: "Rascal Does Not Dream" },
+  { id: "Electronics", displayName: "Electronics" },
+  { id: "Furniture", displayName: "Furniture" },
+  { id: "Vehicles", displayName: "Vehicles" },
+  { id: "Accessories", displayName: "Accessories" },
+  { id: "Fashion", displayName: "Fashion" },
+  { id: "booksAndArticles", displayName: "Books and Articles" },
+  { id: "Services", displayName: "Services" },
+  { id: "Art", displayName: "Art" },
+  { id: "Music", displayName: "Music" },
+  { id: "Utensils", displayName: "Utensils" },
+  { id: "Others", displayName: "Others" },
 ];
